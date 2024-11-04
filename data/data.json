@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "userName": "Alex",
+      "bakiye": 2000,
+      "debt": [
+        {
+          "amount": 300,
+          "description": "Utility bills"
+        },
+        {
+          "amount": 250,
+          "description": "Grocery credit"
+        }
+      ]
+    },
+    {
+      "userName": "Davis",
+      "bakiye": 10000,
+      "debt": [
+        {
+          "amount": 1500,
+          "description": "Car loan"
+        },
+        {
+          "amount": 200,
+          "description": "Credit card payment"
+        }
+      ]
+    }
+  ]
+}
