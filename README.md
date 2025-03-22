@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# BankPlus - Modern Banka Uygulaması
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![BankPlus](https://img.shields.io/badge/BankPlus-v1.0-blue)
+![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6-F7DF1E?logo=javascript)
+![CSS3](https://img.shields.io/badge/CSS3-Modern-1572B6?logo=css3)
 
-## Available Scripts
+Finansal Geleceğinizin Güvenli Adresi
 
-In the project directory, you can run:
+## 📋 Proje Tanımı
 
-### `npm start`
+BankPlus, React ve modern web teknolojileri kullanılarak geliştirilmiş, kullanıcı dostu bir banka uygulamasıdır. Bu uygulama sayesinde kullanıcılar hesaplarını görüntüleyebilir, para transferi yapabilir, para çekip yatırabilir ve borç sorgulayabilirler.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🚀 Özellikler
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Kullanıcı Hesap Yönetimi**: Farklı kullanıcılar arasında geçiş yapabilme
+- **Bakiye Görüntüleme**: Anlık bakiye durumu izleme
+- **Para Transferi**: Kullanıcılar arasında para transferi yapabilme
+- **Para Çekme/Yatırma**: Hesaba para yatırma veya hesaptan para çekme işlemleri
+- **Borç Sorgulama**: Mevcut borçları görüntüleme ve ödeme imkanı
+- **Kredi Başvurusu**: Yeni kredi başvurusu yapabilme
+- **İşlem Geçmişi**: Tüm finansal işlemlerin geçmişini görüntüleme
 
-### `npm test`
+## 🛠️ Kullanılan Teknolojiler
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React** (v18.3.1) - Kullanıcı arayüzü geliştirme
+- **React Hooks** - useReducer ve useState ile state yönetimi
+- **Modern JavaScript (ES6+)** - Güncel JavaScript özellikleri
+- **CSS3** - Modern ve duyarlı tasarım
+- **Fetch API** - Veri çekme işlemleri
+- **JSON** - Veri formatı
+- **Responsive Design** - Tüm cihazlarda uyumlu tasarım
 
-### `npm run build`
+## 📁 Proje Yapısı
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+bank-app/
+│
+├── public/                 # Statik dosyalar
+│   ├── index.html          # Ana HTML dosyası
+│   └── ...                 # Diğer statik dosyalar
+│
+├── src/                    # Kaynak kodları
+│   ├── components/         # React bileşenleri
+│   │   ├── App.js          # Ana uygulama bileşeni
+│   │   ├── Header.js       # Üst bilgi bileşeni
+│   │   ├── Main.js         # Ana içerik bileşeni
+│   │   ├── AccountScreen.js # Hesap ekranı
+│   │   └── ...             # Diğer bileşenler
+│   │
+│   ├── index.js            # React giriş noktası
+│   └── index.css           # Global CSS stilleri
+│
+├── package.json            # Proje bağımlılıkları ve scriptleri
+└── README.md               # Proje dokümantasyonu
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🔄 Veri Akışı
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Uygulama `useReducer` hook'u kullanarak merkezi bir state yönetimi sağlar:
 
-### `npm run eject`
+1. Kullanıcı bir eylem gerçekleştirir (örn. para transferi)
+2. İlgili bileşen bir action dispatch eder
+3. Reducer fonksiyonu state'i günceller
+4. Güncellenen state, ilgili bileşenlere iletilir
+5. Bileşenler yeni state'e göre yeniden render edilir
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 🎨 Tasarım Özellikleri
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Modern ve temiz arayüz
+- Duyarlı tasarım (mobil, tablet ve masaüstü uyumlu)
+- Kullanıcı dostu formlar ve interaktif elementler
+- Tutarlı renk şeması ve tipografi
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🔮 Gelecek Geliştirmeler
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Kullanıcı kimlik doğrulama sistemi
+- Daha gelişmiş borç yönetimi
+- Otomatik ödeme ayarları
+- Dark mode desteği
+- Çoklu dil desteği
 
-## Learn More
+## 📝 Lisans
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Bu proje [MIT](LICENSE) lisansı altında lisanslanmıştır.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🤝 Katkıda Bulunma
 
-### Code Splitting
+Katkıda bulunmak için lütfen bir issue açın veya bir pull request gönderin.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Geliştirici: [Abdullah Alioğlu] | &copy; 2024

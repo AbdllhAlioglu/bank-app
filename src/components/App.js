@@ -188,7 +188,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        dispatch({ type: "dataReceived", payload: data });
+        dispatch({ type: "dataReceived", payload: data.users });
       })
       .catch((err) => {
         console.error("Hata oluştu:", err);
@@ -203,41 +203,49 @@ function App() {
     <div className="app">
       <Header />
       <Main>
-        {status === "loading" && <Loader />}
-        {status === "error" && <Error />}
+        {status === "loading" && (
+          <div className="loader-container">
+            <div className="loader"></div>
+            <p>Yükleniyor...</p>
+          </div>
+        )}
+        {status === "error" && (
+          <div className="error">
+            Bir hata oluştu. Lütfen daha sonra tekrar deneyin.
+          </div>
+        )}
         {status === "ready" && (
           <StartScreen users={users} dispatch={dispatch} />
         )}
-        <>
-          {status === "active" && (
-            <AccountScreen user={selectedUser} dispatch={dispatch} />
-          )}
-          {status === "deptInquiry" && (
-            <DebtInquiry user={selectedUser} dispatch={dispatch} />
-          )}
-          {status === "viewTransactionHistory" && (
-            <TransactionHistory
-              transactionHistory={transactionHistory}
-              dispatch={dispatch}
-            />
-          )}
-          {status === "withDraw" && (
-            <WithdrawScreen user={selectedUser} dispatch={dispatch} />
-          )}
-          {status === "showDeposit" && (
-            <Deposit user={selectedUser} dispatch={dispatch} />
-          )}
-          {status === "showLoanApplication" && (
-            <LoanApplication user={selectedUser} dispatch={dispatch} />
-          )}
-          {status === "transfer" && (
-            <TransferScreen
-              user={selectedUser}
-              dispatch={dispatch}
-              users={users}
-            />
-          )}
-        </>
+
+        {status === "active" && (
+          <AccountScreen user={selectedUser} dispatch={dispatch} />
+        )}
+        {status === "deptInquiry" && (
+          <DebtInquiry user={selectedUser} dispatch={dispatch} />
+        )}
+        {status === "viewTransactionHistory" && (
+          <TransactionHistory
+            transactionHistory={transactionHistory}
+            dispatch={dispatch}
+          />
+        )}
+        {status === "withDraw" && (
+          <WithdrawScreen user={selectedUser} dispatch={dispatch} />
+        )}
+        {status === "showDeposit" && (
+          <Deposit user={selectedUser} dispatch={dispatch} />
+        )}
+        {status === "showLoanApplication" && (
+          <LoanApplication user={selectedUser} dispatch={dispatch} />
+        )}
+        {status === "transfer" && (
+          <TransferScreen
+            user={selectedUser}
+            dispatch={dispatch}
+            users={users}
+          />
+        )}
       </Main>
     </div>
   );

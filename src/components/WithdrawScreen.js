@@ -39,21 +39,28 @@ export default function WithdrawScreen({ user, dispatch }) {
 
   return (
     <div className="withdraw-screen">
-      <h2>Para Çekme Ekranı</h2>
-      <h3>Mevcut Bakiyeniz: {user.bakiye} TL</h3>
-      <p>Lütfen çekmek istediğiniz miktarı giriniz:</p>
-      <input
-        type="number"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
-        placeholder="Çekilecek Tutar"
-      />
+      <h2>Para Çekme</h2>
+      <p>
+        Mevcut Bakiyeniz: <strong>{user.bakiye} ₺</strong>
+      </p>
+
+      <div className="form-group">
+        <label className="form-label">Çekmek istediğiniz tutarı giriniz:</label>
+        <input
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="Çekilecek Tutar"
+        />
+      </div>
+
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+
       <button className="btn" onClick={handleWithdraw}>
         Para Çek
       </button>
-      <button className="btn" onClick={handleAccountPage}>
-        Geri
+      <button className="btn btn-outline" onClick={handleAccountPage}>
+        Geri Dön
       </button>
     </div>
   );

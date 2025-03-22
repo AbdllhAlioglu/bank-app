@@ -3,9 +3,11 @@ import TransactionControls from "./TransactionControls";
 
 export default function AccountScreen({ user, dispatch }) {
   return (
-    <div>
-      <h2>Hoşgeldiniz {user.userName}</h2>
-      <h3>Bakiyeniz: {user.bakiye} </h3>
+    <div className="card account-screen">
+      <div className="account-info">
+        <div className="account-username">Hoş geldiniz, {user.userName}</div>
+        <div className="account-balance">{user.bakiye} ₺</div>
+      </div>
       <TransactionControls user={user} dispatch={dispatch} />
     </div>
   );

@@ -3,8 +3,10 @@ import React from "react";
 export default function Header() {
   return (
     <header>
-      <h1>REACT BANK </h1>
-      <p>React Bank'a Hoşgeldiniz!</p>
+      <div className="header-content">
+        <h1>BANKPLUS</h1>
+        <p>Finansal Geleceğinizin Güvenli Adresi</p>
+      </div>
     </header>
   );
 }

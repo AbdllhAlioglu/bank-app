@@ -1,72 +1,99 @@
 import { useState } from "react";
 
 export default function TransferScreen({ user, dispatch, users }) {
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [transferAmount, setTransferAmount] = useState(0);
+  const [selectedUser, setSelectedUser] = useState("");
+  const [transferAmount, setTransferAmount] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleTransfer = () => {
-    // Bakiyeyi kontrol et
-    if (transferAmount > user.bakiye) {
-      alert("Bakiyenizden fazla miktar transfer edemezsiniz.");
-      return; // İşlemi durdur
+    setErrorMessage("");
+    const amount = parseFloat(transferAmount);
+
+    // Validasyon kontrolleri
+    if (!selectedUser) {
+      setErrorMessage("Lütfen bir kullanıcı seçin.");
+      return;
     }
 
-    if (selectedUser && transferAmount > 0) {
-      dispatch({
-        type: "transferMoney",
-        payload: {
-          toUser: selectedUser,
-          amount: transferAmount,
-        },
-      });
-      dispatch({
-        type: "addTransaction",
-        payload: {
-          type: `Para Transferi to ${selectedUser}`,
-          amount: transferAmount,
-          date: new Date().toLocaleString(),
-        },
-      });
-      alert(`Başarıyla ${transferAmount} TL transfer edildi!`);
-      setTransferAmount(0); // Input'u sıfırla
-      setSelectedUser(null); // Seçimi sıfırla
-    } else {
-      alert("Geçerli bir kullanıcı ve transfer miktarı girin.");
+    if (isNaN(amount) || amount <= 0) {
+      setErrorMessage("Lütfen geçerli bir tutar girin.");
+      return;
     }
+
+    // Bakiyeyi kontrol et
+    if (amount > user.bakiye) {
+      setErrorMessage("Bakiyenizden fazla miktar transfer edemezsiniz.");
+      return;
+    }
+
+    dispatch({
+      type: "transferMoney",
+      payload: {
+        toUser: selectedUser,
+        amount: amount,
+      },
+    });
+
+    dispatch({
+      type: "addTransaction",
+      payload: {
+        type: `Para Transferi (${selectedUser})`,
+        amount: amount,
+        date: new Date().toLocaleString(),
+      },
+    });
+
+    setTransferAmount("");
+    setSelectedUser("");
+    dispatch({ type: "startApp" });
   };
 
   return (
     <div className="transfer-screen">
-      <h2>Para Transferi Ekranı</h2>
-      <p>Mevcut Bakiye: {user.bakiye} TL</p>
+      <h2>Para Transferi</h2>
+      <p>
+        Mevcut Bakiyeniz: <strong>{user.bakiye} ₺</strong>
+      </p>
 
-      <select
-        value={selectedUser || ""}
-        onChange={(e) => setSelectedUser(e.target.value)}
-      >
-        <option value="" disabled>
-          Kullanıcı Seçin
-        </option>
-        {users
-          .filter((u) => u.userName !== user.userName)
-          .map((u) => (
-            <option key={u.userName} value={u.userName}>
-              {u.userName}
-            </option>
-          ))}
-      </select>
+      <div className="form-group">
+        <label className="form-label">Transfer yapılacak kullanıcı:</label>
+        <select
+          value={selectedUser}
+          onChange={(e) => setSelectedUser(e.target.value)}
+        >
+          <option value="" disabled>
+            Kullanıcı Seçin
+          </option>
+          {users
+            .filter((u) => u.userName !== user.userName)
+            .map((u) => (
+              <option key={u.userName} value={u.userName}>
+                {u.userName}
+              </option>
+            ))}
+        </select>
+      </div>
 
-      <input
-        type="number"
-        value={transferAmount}
-        onChange={(e) => setTransferAmount(Number(e.target.value))}
-        placeholder="Transfer Miktarını Girin"
-      />
+      <div className="form-group">
+        <label className="form-label">Transfer tutarı:</label>
+        <input
+          type="number"
+          value={transferAmount}
+          onChange={(e) => setTransferAmount(e.target.value)}
+          placeholder="Transfer miktarını girin"
+        />
+      </div>
+
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+
       <button className="btn" onClick={handleTransfer}>
         Transfer Et
       </button>
-      <button className="btn" onClick={() => dispatch({ type: "startApp" })}>
-        Geri
+      <button
+        className="btn btn-outline"
+        onClick={() => dispatch({ type: "startApp" })}
+      >
+        Geri Dön
       </button>
     </div>
   );

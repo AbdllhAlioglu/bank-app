@@ -27,11 +27,11 @@ export default function TransactionControls({ user, dispatch }) {
 
   return (
     <div className="transaction-controls">
+      <button className="btn btn-success" onClick={handleDeposit}>
+        Para Yatır
+      </button>
       <button className="btn" onClick={handleWithdraw}>
         Para Çek
-      </button>
-      <button className="btn" onClick={handleDeposit}>
-        Para Yatır
       </button>
       <button className="btn" onClick={handleTransfer}>
         Para Transferi
@@ -45,10 +45,10 @@ export default function TransactionControls({ user, dispatch }) {
       >
         Kredi Başvuru
       </button>
-      <button className="btn" onClick={handleTransactionHistory}>
+      <button className="btn btn-secondary" onClick={handleTransactionHistory}>
         İşlem Geçmişi
       </button>
-      <button className="btn" onClick={handleQuitAccount}>
+      <button className="btn btn-danger" onClick={handleQuitAccount}>
         Çıkış
       </button>
     </div>
